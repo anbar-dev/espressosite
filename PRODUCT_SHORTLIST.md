@@ -37,3 +37,19 @@ These are selection decisions, not claims that excluded models are poor products
 - [Fellow Opus 2](https://fellowproducts.com/products/opus-2-conical-burr-grinder)
 
 Recheck model numbers, included features, official prices, and Amazon search results before launch and whenever the shortlist is updated.
+
+## Amazon listing and image map
+
+Product photos are local files in `assets/`, captured from these Amazon product listings. The site reports that Amazon support authorized affiliate use of these product images. The image files are served from Espressaroo so product cards do not depend on a third-party image request; the nearby Amazon links remain visibly marked as paid affiliate links.
+
+| Product | Amazon ASIN | Local image |
+|---|---|---|
+| Breville Bambino BES450 | `B0B1JPPG2L` | `assets/breville-bambino.jpg` |
+| Breville Bambino Plus BES500 | `B07JVD78TT` | `assets/breville-bambino-plus.jpg` |
+| Baratza Encore ESP ZCG495 | `B0BW272XCV` | `assets/baratza-encore-esp.jpg` |
+| Gaggia Classic Pro E24 | `B07RQ3NL76` | `assets/gaggia-classic-pro-e24.jpg` |
+| De’Longhi Magnifica Start ECAM22080B EX:1 | `B0D5JQK6VQ` | `assets/delonghi-magnifica-start.jpg` |
+| Fellow Opus 2 | `B0FPCJDDNC` | `assets/fellow-opus-2.jpg` |
+| Breville Barista Express BES870XL | `B00CH9QWOU` | `assets/breville-barista-express.jpg` |
+
+Amazon links use these product detail pages with the `cofmac93-20` tag. Verify the selected variant, seller, and availability in the Associates account when refreshing a product image or link.

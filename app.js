@@ -9,10 +9,14 @@ const recommendations = [
     machine: "Breville Bambino",
     machineNote: "BES450 · fast warm-up · manual steam wand",
     machineQuery: "Breville+Bambino+BES450+espresso+machine",
+    machineAsin: "B0B1JPPG2L",
+    machineImage: "assets/breville-bambino.jpg",
     searchTerms: "BrevilleBambino Baratza EncoreESP BES450 BES 450 single boiler compact quick heat portafilter manual milk steaming coffee",
     grinder: "Baratza Encore ESP",
     grinderNote: "Espresso-focused grind adjustment",
     grinderQuery: "Baratza+Encore+ESP+espresso+grinder",
+    grinderAsin: "B0BW272XCV",
+    grinderImage: "assets/baratza-encore-esp.jpg",
     verdictLabel: "Why this pair:",
     verdict: "It reaches a separate-grinder setup near the $500 planning band.",
     bestFor: "First-time buyers who want to learn espresso and mostly drink straight shots, with occasional milk drinks.",
@@ -34,10 +38,14 @@ const recommendations = [
     machine: "Bambino Plus",
     machineNote: "BES500 · automatic or manual milk texturing",
     machineQuery: "Breville+Bambino+Plus+BES500+espresso+machine",
+    machineAsin: "B07JVD78TT",
+    machineImage: "assets/breville-bambino-plus.jpg",
     searchTerms: "Breville BambinoPlus Baratza EncoreESP BES500 BES 500 automatic manual milk texturing latte cappuccino steam wand portafilter",
     grinder: "Baratza Encore ESP",
     grinderNote: "Espresso-focused grind adjustment",
     grinderQuery: "Baratza+Encore+ESP+espresso+grinder",
+    grinderAsin: "B0BW272XCV",
+    grinderImage: "assets/baratza-encore-esp.jpg",
     verdictLabel: "Advantage:",
     verdict: "Choose among milk temperature and texture settings, or take over steaming by hand.",
     bestFor: "Frequent latte or cappuccino drinkers who still want to make espresso with a portafilter.",
@@ -59,6 +67,8 @@ const recommendations = [
     machine: "Magnifica Start",
     machineNote: "ECAM22080B EX:1 · built-in grinder and LatteCrema milk",
     machineQuery: "De%27Longhi+Magnifica+Start+ECAM22080B+EX1+LatteCrema",
+    machineAsin: "B0D5JQK6VQ",
+    machineImage: "assets/delonghi-magnifica-start.jpg",
     machineLinkLabel: "See ECAM22080B EX:1 on Amazon",
     searchTerms: "DeLonghi De'Longhi MagnificaStart ECAM22080B EX1 ECAM 22080B LatteCrema super automatic superautomatic bean to cup built in integrated grinder one touch push button milk cappuccino",
     verdictLabel: "Advantage:",
@@ -82,10 +92,14 @@ const recommendations = [
     machine: "Gaggia Classic Pro E24",
     machineNote: "E24 · brass boiler · manual steam wand",
     machineQuery: "Gaggia+Classic+Pro+E24+espresso+machine",
+    machineAsin: "B07RQ3NL76",
+    machineImage: "assets/gaggia-classic-pro-e24.jpg",
     searchTerms: "GaggiaClassicPro Gaggia Classic Pro E24 E 24 Baratza EncoreESP brass boiler 58mm 58 mm portafilter single boiler manual steam wand traditional espresso",
     grinder: "Baratza Encore ESP",
     grinderNote: "Espresso-focused grind adjustment",
     grinderQuery: "Baratza+Encore+ESP+espresso+grinder",
+    grinderAsin: "B0BW272XCV",
+    grinderImage: "assets/baratza-encore-esp.jpg",
     verdictLabel: "Advantage:",
     verdict: "A 58 mm portafilter, single boiler, and traditional steam wand create a more hands-on setup.",
     bestFor: "Buyers who want a traditional portafilter setup and are interested in learning a hands-on routine.",
@@ -101,6 +115,10 @@ const recommendations = [
 
 function affiliateUrl(query) {
   return `https://www.amazon.com/s?k=${query}&tag=cofmac93-20`;
+}
+
+function affiliateProductUrl(asin, fallbackQuery) {
+  return asin ? `https://www.amazon.com/dp/${asin}?tag=cofmac93-20` : affiliateUrl(fallbackQuery);
 }
 
 function escapeHtml(value) {
@@ -158,6 +176,12 @@ function matchesSearch(query, searchableText) {
 
 function renderRecommendation(item, position, drink) {
   const isAutomatic = !item.grinder;
+  const machineUrl = affiliateProductUrl(item.machineAsin, item.machineQuery);
+  const grinderUrl = affiliateProductUrl(item.grinderAsin, item.grinderQuery);
+  const productImages = `<div class="setup-product-gallery${isAutomatic ? " single-product-gallery" : ""}">
+    <figure class="product-photo-card"><img src="${escapeHtml(item.machineImage)}" alt="${escapeHtml(item.machine)} espresso machine" loading="lazy" decoding="async"><figcaption><a class="product-photo-cta affiliate-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">Machine · Amazon paid link ↗</a></figcaption></figure>
+    ${item.grinder ? `<figure class="product-photo-card"><img src="${escapeHtml(item.grinderImage)}" alt="${escapeHtml(item.grinder)} coffee grinder" loading="lazy" decoding="async"><figcaption><a class="product-photo-cta affiliate-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">Grinder · Amazon paid link ↗</a></figcaption></figure>` : ""}
+  </div>`;
   const fitLabel = position === 0
     ? `TOP FIT FOR ${drink === "both" ? "A MIX OF DRINKS" : drinkLabels[drink].toUpperCase()}`
     : "";
@@ -166,7 +190,7 @@ function renderRecommendation(item, position, drink) {
     ? `<span class="pair-plus">+</span><div><span class="pair-label">GRINDER</span><strong>${escapeHtml(item.grinder)}</strong><small>${escapeHtml(item.grinderNote)}</small></div>`
     : "";
   const grinderLink = item.grinder
-    ? `<a class="secondary-card-link affiliate-link" href="${affiliateUrl(item.grinderQuery)}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too <span>(paid link)</span> ↗</a>`
+    ? `<a class="secondary-card-link affiliate-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too <span>(paid link)</span> ↗</a>`
     : "";
   const recommendationFacts = [
     ["Best for", item.bestFor],
@@ -176,12 +200,13 @@ function renderRecommendation(item, position, drink) {
   ].map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("");
   return `<article class="setup-card ${position === 0 ? "featured-card" : ""}">
     <div class="card-topline"><span class="pill pill-${item.tone}">${escapeHtml(item.badge)}</span>${fitLabel ? `<span class="finder-fit-note">${fitLabel}</span>` : ""}<span class="card-index">${String(position + 1).padStart(2, "0")}</span></div>
-    <h3>${escapeHtml(item.title)}</h3><p class="card-intro">${escapeHtml(item.intro)}</p>
+    ${productImages}
+    <h3>${escapeHtml(item.title)}</h3><p class="product-title-note"><a class="product-title-link affiliate-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">Machine listing · paid link on Amazon ↗</a></p><p class="card-intro">${escapeHtml(item.intro)}</p>
     <div class="pairing ${isAutomatic ? "single-pair" : ""}">${machineBlock}${grinderBlock}</div>
     <div class="card-verdict"><span class="verdict-icon">↗</span><p><b>${escapeHtml(item.verdictLabel)}</b> ${escapeHtml(item.verdict)}</p></div>
     <dl class="recommendation-facts">${recommendationFacts}</dl>
     <p class="gear-budget"><b>Expected main-gear budget</b><span>${escapeHtml(item.gearBudget)}</span><small>Before tax and accessories; estimate based on manufacturer list prices checked October 2026.</small></p>
-    <a class="button button-card affiliate-link" href="${affiliateUrl(item.machineQuery)}" target="_blank" rel="sponsored nofollow noopener">${escapeHtml(item.machineLinkLabel || `See ${item.machine} on Amazon`)} <span>(paid link)</span> ↗</a>
+    <a class="button button-card affiliate-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">${escapeHtml(item.machineLinkLabel || `See ${item.machine} on Amazon`)} <span>(paid link)</span> ↗</a>
     ${grinderLink}
   </article>`;
 }
