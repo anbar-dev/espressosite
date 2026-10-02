@@ -38,9 +38,9 @@ The plain-JavaScript finder now uses flexible budget, mixed drinks, and a neutra
 
 The first screen now names U.S. home espresso buyers, explains the shortlist, and offers three full-setup budget shortcuts. Choosing a band updates the finder and jumps to its matching recommendations; the full drink and workflow controls remain available for refinement. On mobile, the copy and budget choices appear before the illustration, and the search submit button remains visible. Removed duplicate header shortcuts, pointed “Find a setup” directly at the finder, clarified guide/comparison labels, and made the mobile menu announce whether it opens or closes. Reviewed the homepage at mobile and desktop sizes.
 
-## 8. Refine and inspect the visual system — planned
+## 8. Refine and inspect the visual system — complete
 
-Keep the white background and espresso-specific palette, improve type consistency and contrast, and check layout and text sizes at desktop and mobile widths. Use product imagery only when its usage is authorized.
+Kept the white canvas and consistent cocoa, copper, and muted-olive palette, with a display serif and readable sans-serif body type. Increased decision labels, product identifiers, and supporting details to at least 12 px, darkened small utility copy, and retained the smaller 10 px brand tagline as a secondary mark. Reviewed the homepage, setup cards, buying guide, and comparison page at 1280×720 desktop and 390×844 mobile widths. Confirmed the mobile comparison table scrolls within its own container without creating page-level horizontal overflow. The existing CSS-drawn machine-and-grinder illustration remains in use; no product photos were added.
 
 ## 9. Verify affiliate links and disclosures — planned
 

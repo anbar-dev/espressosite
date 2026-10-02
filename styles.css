@@ -3572,3 +3572,44 @@ body{
     gap:10px 16px
   }
 }
+
+/* Legibility pass: keep labels and supporting details easy to scan. */
+.disclosure-bar,
+.disclosure-bar a{
+  font-size:12px
+}
+.brand small{
+  font-size:10px
+}
+.eyebrow,
+.inner-hero-meta span,
+.hero-budget-start>small{
+  color:#5d5149;
+  font-size:12px;
+  line-height:1.45
+}
+.eyebrow{
+  letter-spacing:.08em
+}
+.hero-budget-start>small{
+  letter-spacing:normal
+}
+.field-number,
+.proof-count,
+.gallery-kicker,
+.pill,
+.card-topline .pill,
+.finder-fit-note,
+.pair-label,
+.recommendation-facts dt,
+.auto-specs b,
+.auto-side-note .eyebrow,
+.button-card>span,
+.table-link small,
+.comparison-table thead th,
+.quick-pick-card .eyebrow{
+  font-size:12px
+}
+.finder-fit-note{
+  line-height:1.35
+}
