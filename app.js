@@ -58,7 +58,8 @@ const recommendations = [
     intro: "A bean-to-cup automatic with integrated grinding and one-touch drinks, including automatic milk on this variant.",
     machine: "Magnifica Start",
     machineNote: "ECAM22080B EX:1 · built-in grinder and LatteCrema milk",
-    machineQuery: "De%27Longhi+Magnifica+Start+ECAM22080B+LatteCrema",
+    machineQuery: "De%27Longhi+Magnifica+Start+ECAM22080B+EX1+LatteCrema",
+    machineLinkLabel: "See ECAM22080B EX:1 on Amazon",
     searchTerms: "DeLonghi De'Longhi MagnificaStart ECAM22080B EX1 ECAM 22080B LatteCrema super automatic superautomatic bean to cup built in integrated grinder one touch push button milk cappuccino",
     verdictLabel: "Advantage:",
     verdict: "It handles grinding and brewing with one-touch drinks and automatic milk-system cleaning after use.",
@@ -165,7 +166,7 @@ function renderRecommendation(item, position, drink) {
     ? `<span class="pair-plus">+</span><div><span class="pair-label">GRINDER</span><strong>${escapeHtml(item.grinder)}</strong><small>${escapeHtml(item.grinderNote)}</small></div>`
     : "";
   const grinderLink = item.grinder
-    ? `<a class="secondary-card-link affiliate-link" href="${affiliateUrl(item.grinderQuery)}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too ↗</a>`
+    ? `<a class="secondary-card-link affiliate-link" href="${affiliateUrl(item.grinderQuery)}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too <span>(paid link)</span> ↗</a>`
     : "";
   const recommendationFacts = [
     ["Best for", item.bestFor],
@@ -180,7 +181,7 @@ function renderRecommendation(item, position, drink) {
     <div class="card-verdict"><span class="verdict-icon">↗</span><p><b>${escapeHtml(item.verdictLabel)}</b> ${escapeHtml(item.verdict)}</p></div>
     <dl class="recommendation-facts">${recommendationFacts}</dl>
     <p class="gear-budget"><b>Expected main-gear budget</b><span>${escapeHtml(item.gearBudget)}</span><small>Before tax and accessories; estimate based on manufacturer list prices checked October 2026.</small></p>
-    <a class="button button-card affiliate-link" href="${affiliateUrl(item.machineQuery)}" target="_blank" rel="sponsored nofollow noopener">See ${escapeHtml(item.machine)} on Amazon <span>(paid link)</span> ↗</a>
+    <a class="button button-card affiliate-link" href="${affiliateUrl(item.machineQuery)}" target="_blank" rel="sponsored nofollow noopener">${escapeHtml(item.machineLinkLabel || `See ${item.machine} on Amazon`)} <span>(paid link)</span> ↗</a>
     ${grinderLink}
   </article>`;
 }

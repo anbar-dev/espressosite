@@ -16,7 +16,7 @@ This is the agreed sequence for taking Espressaroo from its current draft to a r
 
 The four featured setups cover a separate-grinder pair near $500, a semi-automatic with easier milk, a more traditional E24 machine, and a one-touch bean-to-cup option. Manufacturer-listed planning totals are $499.90, $699.90, $748.95, and $749.95 respectively, before tax and accessories. The exact De’Longhi variant is ECAM22080B EX:1 (LatteCrema, listed at $749.95); the silver ECAM22080SB is listed at $799.95 and the ECAM22022B has manual milk frothing. A Barista Express with an integrated grinder is retained as a comparison-page alternative. Current U.S. model, price, source, and selection notes are in [PRODUCT_SHORTLIST.md](PRODUCT_SHORTLIST.md).
 
-The matching homepage and comparison links were updated to search Amazon for the selected ECAM22080B variant. Recheck listing identity and availability as part of step 9.
+The homepage, comparison page, and finder now search Amazon for ECAM22080B EX1 with LatteCrema. Step 9 confirmed the query text; check live U.S. listing identity and availability from a U.S.-localized session during step 10.
 
 ## 3. Strengthen each recommendation — complete
 
@@ -42,10 +42,12 @@ The first screen now names U.S. home espresso buyers, explains the shortlist, an
 
 Kept the white canvas and consistent cocoa, copper, and muted-olive palette, with a display serif and readable sans-serif body type. Increased decision labels, product identifiers, and supporting details to at least 12 px, darkened small utility copy, and retained the smaller 10 px brand tagline as a secondary mark. Reviewed the homepage, setup cards, buying guide, and comparison page at 1280×720 desktop and 390×844 mobile widths. Confirmed the mobile comparison table scrolls within its own container without creating page-level horizontal overflow. The existing CSS-drawn machine-and-grinder illustration remains in use; no product photos were added.
 
-## 9. Verify affiliate links and disclosures — planned
+## 9. Verify affiliate links and disclosures — complete
 
-Check model-specific Amazon search links, tag `cofmac93-20`, sponsored link attributes, and disclosure placement. Confirm each destination makes the intended model or variant easy to identify.
+Audited the rendered homepage and comparison page: all 14 affiliate links use tag `cofmac93-20`, include `rel="sponsored nofollow noopener"`, and display “paid link” beside the call to action. The JavaScript-generated finder links follow the same pattern. The exact Amazon Associate statement appears in the top disclosure on every page, with an expanded explanation in the buying guide. Model searches include the identifying codes (BES450, BES500, E24, BES870XL, ECAM22080B EX1, Encore ESP, and Opus 2). Made the De’Longhi button and search query name ECAM22080B EX:1 with LatteCrema explicitly.
+
+The link audit browser is in Italy: Amazon redirected `.com` searches to `.it` while preserving the search terms and tag. Its country-specific Magnifica results did not verify the U.S. variant, so do the final listing check from a U.S.-localized context during step 10.
 
 ## 10. Complete technical SEO and GitHub Pages deployment — planned
 
-Review titles, descriptions, canonical URLs, sitemap, robots file, and relative paths. Configure GitHub Pages and the custom domain, then verify DNS, HTTPS/certificate status, page navigation, and affiliate links on the published site.
+Review titles, descriptions, canonical URLs, sitemap, robots file, and relative paths. Configure GitHub Pages and the custom domain, then verify DNS, HTTPS/certificate status, page navigation, and affiliate links on the published site. Recheck Amazon search results from a U.S.-localized context; the current Italian browser session redirected Amazon.com searches to Amazon.it.
