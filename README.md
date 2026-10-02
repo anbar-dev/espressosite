@@ -29,9 +29,9 @@ See [FINDER_SPEC.md](FINDER_SPEC.md) for the agreed budget, drink, workflow, sea
 
 ## Affiliate links and disclosures
 
-Amazon links use the Associates tag `cofmac93-20` and open Amazon.com search results for the exact model. This makes it easier to check current model, seller, price, and stock before purchase. Each link is marked as a paid link and uses `rel="sponsored nofollow"`.
+Amazon links use the Associates tag `cofmac93-20` and open model-specific Amazon product pages. Check the selected variant, seller, current price, and stock before purchase. The site-wide banner and footer disclose these affiliate links; Amazon anchors use `rel="sponsored nofollow noopener"`.
 
-The site includes the Amazon-required statement, “As an Amazon Associate I earn from qualifying purchases,” near the top and in every page footer, with plain-language disclosure close to product links. No live prices, ratings, review excerpts, or Amazon product images are copied onto the site. Review the Associates Program policies and link disclosures before launch and whenever the pages are substantially changed.
+The site includes the statement, “As an Amazon Associate I earn from qualifying purchases,” near the top and in every page footer, with a plain-language disclosure in the buying guide. Product photos are local files in `assets/`; their Amazon ASIN map is in [PRODUCT_SHORTLIST.md](PRODUCT_SHORTLIST.md). The site does not copy live prices, ratings, or review excerpts. Recheck product links and disclosures whenever the pages are substantially changed.
 
 ## Product and editorial notes
 
@@ -51,7 +51,7 @@ Primary product references:
 1. Create a GitHub repository and push these files to its default branch.
 2. In **Settings → Pages**, choose **Deploy from a branch**, select the default branch and `/ (root)`, then save.
 3. The root `CNAME` file is set to `espressaroo.com`. In Pages settings, confirm that custom domain. At your DNS provider, add the GitHub Pages apex records and a `www` CNAME pointing to your account’s `username.github.io` domain. Follow [GitHub’s current custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) and enable **Enforce HTTPS** when GitHub offers it.
-4. Once DNS and publishing finish, open `https://espressaroo.com/`, follow each page link, and confirm affiliate links open the expected Amazon model search with the tag intact.
+4. Once DNS and publishing finish, open `https://espressaroo.com/`, follow each page link, and confirm affiliate links open the expected Amazon product page with the tag intact.
 
 If you want to preview at a repository URL before the custom domain is connected, temporarily remove the `CNAME` file and use relative page and asset URLs. The canonical URLs and sitemap in this launch configuration are for `https://espressaroo.com/`.
 

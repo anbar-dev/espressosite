@@ -40,7 +40,7 @@ Recheck model numbers, included features, official prices, and Amazon search res
 
 ## Amazon listing and image map
 
-Product photos are local files in `assets/`, captured from these Amazon product listings. The site reports that Amazon support authorized affiliate use of these product images. The image files are served from Espressaroo so product cards do not depend on a third-party image request; the nearby Amazon links remain visibly marked as paid affiliate links.
+Product photos are local files in `assets/`, captured from these Amazon product listings. The site reports that Amazon support authorized affiliate use of these product images. The image files are served from Espressaroo so product cards do not depend on a third-party image request; nearby links identify the corresponding Amazon listings.
 
 | Product | Amazon ASIN | Local image |
 |---|---|---|
@@ -54,4 +54,4 @@ Product photos are local files in `assets/`, captured from these Amazon product 
 
 Amazon links use these product detail pages with the `cofmac93-20` tag. Verify the selected variant, seller, and availability in the Associates account when refreshing a product image or link.
 
-Amazon anchors use the generic `product-link` class for styling, while affiliate status stays explicit through `rel="sponsored"` and visible “paid link” wording. Avoid adding an `affiliate-link` CSS class: cosmetic content filters may hide elements marked with that class.
+Amazon anchors use the generic `product-link` class for styling, while affiliate status stays explicit through `rel="sponsored"` and the site-wide banner and footer disclosure. Avoid adding an `affiliate-link` CSS class: cosmetic content filters may hide elements marked with that class.
