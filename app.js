@@ -194,6 +194,7 @@ function setupFinder() {
   const count = document.querySelector("#results-count");
   const searchInput = document.querySelector("#site-search-input");
   const searchForm = document.querySelector(".site-search");
+  const quickBudgetButtons = document.querySelectorAll("[data-quick-budget]");
   const initialQuery = new URLSearchParams(window.location.search).get("q")?.trim() ?? "";
 
   if (initialQuery && searchInput) {
@@ -220,6 +221,12 @@ function setupFinder() {
     };
   }
 
+  function syncQuickBudgetButtons() {
+    quickBudgetButtons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.quickBudget === form.elements.budget.value));
+    });
+  }
+
   function renderComparisonLinks(items) {
     if (!items.length) return "";
     return `<section class="comparison-suggestions" aria-label="Comparison guide matches"><h3>In the comparison guide</h3><ul>${items.map((item) => `<li><a href="${item.href}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.note)}</span></a></li>`).join("")}</ul></section>`;
@@ -240,6 +247,7 @@ function setupFinder() {
     if (event) event.preventDefault();
     const { budget, drink, workflow, query } = readFilters();
     updateQueryUrl(query);
+    syncQuickBudgetButtons();
 
     const eligibleForBudget = (item) => budget === "any" || item.budget <= Number(budget);
     const eligibleForWorkflow = (item) => workflow === "any" || item.workflow.includes(workflow);
@@ -274,6 +282,13 @@ function setupFinder() {
   }
 
   form.addEventListener("submit", showMatches);
+  quickBudgetButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      form.elements.budget.value = button.dataset.quickBudget;
+      showMatches();
+      document.querySelector("#results-summary")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
   searchForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     form.elements.budget.value = "any";
@@ -311,15 +326,19 @@ function setupNavigation() {
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector("#primary-nav");
   if (!toggle || !nav) return;
+  function setMenuOpen(isOpen) {
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", isOpen ? "Close site menu" : "Open site menu");
+    toggle.textContent = isOpen ? "Close menu" : "Menu";
+    nav.classList.toggle("is-open", isOpen);
+  }
   toggle.addEventListener("click", () => {
     const expanded = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!expanded));
-    nav.classList.toggle("is-open", !expanded);
+    setMenuOpen(!expanded);
   });
   nav.addEventListener("click", (event) => {
     if (event.target.closest("a")) {
-      toggle.setAttribute("aria-expanded", "false");
-      nav.classList.remove("is-open");
+      setMenuOpen(false);
     }
   });
 }

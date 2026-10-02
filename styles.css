@@ -3483,3 +3483,92 @@ body{
     font-size:30px
   }
 }
+
+/* Put the budget decision where new visitors can reach it immediately. */
+.header-main{
+  grid-template-columns:210px minmax(0,1fr)
+}
+.hero-budget-start{
+  max-width:520px;
+  margin:21px 0 0
+}
+.hero-budget-start>p{
+  margin:0 0 9px;
+  color:var(--ink);
+  font-size:13px;
+  font-weight:700
+}
+.hero-budget-options{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px
+}
+.hero-budget-options button{
+  min-height:40px;
+  padding:8px 10px;
+  border:1px solid #d8cdc2;
+  border-radius:5px;
+  background:#fff;
+  color:var(--ink);
+  font:600 12px/1.25 var(--sans);
+  cursor:pointer
+}
+.hero-budget-options button:hover,
+.hero-budget-options button[aria-pressed="true"]{
+  border-color:var(--copper);
+  background:#fbf1ea;
+  color:#8e3c23
+}
+.hero-budget-options button:focus-visible{
+  outline:2px solid var(--copper);
+  outline-offset:2px
+}
+.hero-budget-start>small{
+  display:block;
+  margin-top:7px;
+  color:#756b62;
+  font-size:11px;
+  line-height:1.4
+}
+.hero-actions{
+  margin-top:18px
+}
+@media(max-width:700px){
+  .header-main{
+    grid-template-columns:minmax(0,1fr);
+    gap:9px
+  }
+  .site-search button{
+    display:block;
+    padding-inline:8px;
+    font-size:12px
+  }
+  .hero-copy{
+    grid-row:1;
+    padding:27px 0 25px
+  }
+  .hero-art{
+    grid-row:2;
+    height:250px
+  }
+  .hero-proof{
+    display:none
+  }
+  .hero-budget-start{
+    margin-top:18px
+  }
+  .hero-budget-options{
+    gap:7px
+  }
+  .hero-budget-options button{
+    min-height:44px;
+    padding:8px 6px;
+    font-size:12px
+  }
+  .hero-actions{
+    flex-direction:row;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px 16px
+  }
+}

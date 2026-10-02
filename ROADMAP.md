@@ -34,9 +34,9 @@ The behavior contract is in [FINDER_SPEC.md](FINDER_SPEC.md). Budget and workflo
 
 The plain-JavaScript finder now uses flexible budget, mixed drinks, and a neutral workflow on first visit. Budget and workflow are hard filters; drink choice reorders eligible matches and labels the strongest fit. Search normalizes case, accents, apostrophes, dashes, and partial model terms across recommendations, and returns comparison-only Barista Express and Opus 2 links separately from the setup count. Empty states preserve selections and offer the specified clear, relax-workflow, or raise-budget actions. Clear search removes only `q`; Clear all restores every neutral choice and removes `q`.
 
-## 7. Refine the homepage journey — planned
+## 7. Refine the homepage journey — complete
 
-Bring the audience, budget selector, and fastest path to relevant recommendations into the first screen, especially on mobile. Make navigation labels accurately describe what their controls do.
+The first screen now names U.S. home espresso buyers, explains the shortlist, and offers three full-setup budget shortcuts. Choosing a band updates the finder and jumps to its matching recommendations; the full drink and workflow controls remain available for refinement. On mobile, the copy and budget choices appear before the illustration, and the search submit button remains visible. Removed duplicate header shortcuts, pointed “Find a setup” directly at the finder, clarified guide/comparison labels, and made the mobile menu announce whether it opens or closes. Reviewed the homepage at mobile and desktop sizes.
 
 ## 8. Refine and inspect the visual system — planned
 
