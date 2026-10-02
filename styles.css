@@ -3613,3 +3613,244 @@ body{
 .finder-fit-note{
   line-height:1.35
 }
+
+/* Hero photo and visible affiliate actions */
+.hero-starter-pick{
+  max-width:570px;
+  margin:12px 0 0;
+  padding:10px 13px;
+  border:1px solid #e2d5c9;
+  border-radius:12px;
+  background:#fffdfb;
+  box-shadow:0 8px 24px rgba(53,38,27,.06)
+}
+.hero-starter-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  color:#714027;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.09em
+}
+.hero-starter-heading span:last-child{
+  color:#495941
+}
+.hero-starter-pick>strong{
+  display:block;
+  margin-top:6px;
+  color:#30251d;
+  font-family:var(--display);
+  font-size:20px;
+  line-height:1.2
+}
+.hero-starter-pick>p{
+  margin:4px 0 8px;
+  color:#62594f;
+  font-size:13px;
+  line-height:1.45
+}
+.hero-starter-links{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+.hero-affiliate-link,
+.setup-card .button-card,
+.grinder-card .button-card,
+.auto-product-copy .button-card{
+  min-height:48px;
+  padding:11px 13px;
+  border:1px solid #4e372a;
+  border-radius:8px;
+  background:#563827;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  text-align:left;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:750;
+  line-height:1.25
+}
+.hero-affiliate-link:hover,
+.setup-card .button-card:hover,
+.grinder-card .button-card:hover,
+.auto-product-copy .button-card:hover{
+  background:#37251c;
+  color:#fff;
+  transform:translateY(-1px)
+}
+.hero-affiliate-link:focus-visible,
+.setup-card .button-card:focus-visible,
+.grinder-card .button-card:focus-visible,
+.auto-product-copy .button-card:focus-visible,
+.secondary-card-link:focus-visible,
+.comparison-table .table-link:focus-visible{
+  outline:3px solid #b16a43;
+  outline-offset:3px
+}
+.hero-affiliate-link>span,
+.setup-card .button-card>span,
+.grinder-card .button-card>span,
+.auto-product-copy .button-card>span{
+  flex:0 0 auto;
+  color:#f3e7dc;
+  font-size:11px
+}
+.hero-grinder-link{
+  background:#fff;
+  color:#4b3427
+}
+.hero-grinder-link:hover{
+  background:#f5eee8;
+  color:#37251c
+}
+.hero-grinder-link>span{
+  color:#715542
+}
+.hero-starter-pick>small{
+  display:block;
+  margin-top:8px;
+  color:#665b51;
+  font-size:11px;
+  line-height:1.35
+}
+.hero-photo{
+  position:relative;
+  display:block;
+  min-height:430px;
+  height:clamp(430px,40vw,540px);
+  overflow:hidden;
+  isolation:isolate;
+  border:1px solid #eee5dc;
+  border-radius:18px;
+  background:#f5f0e9;
+  box-shadow:0 18px 45px rgba(61,43,29,.12)
+}
+.hero-photo::before{
+  content:none;
+  display:none
+}
+.hero-photo>img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:65% center
+}
+.hero-photo-caption{
+  position:absolute;
+  z-index:1;
+  left:18px;
+  bottom:18px;
+  display:grid;
+  gap:4px;
+  max-width:min(290px,calc(100% - 36px));
+  padding:12px 15px;
+  border:1px solid rgba(255,255,255,.86);
+  border-radius:10px;
+  background:rgba(255,253,250,.92);
+  box-shadow:0 8px 24px rgba(40,27,18,.1);
+  backdrop-filter:blur(8px)
+}
+.hero-photo-caption span{
+  color:#714027;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em
+}
+.hero-photo-caption strong{
+  color:#30251d;
+  font-family:var(--display);
+  font-size:18px;
+  line-height:1.18
+}
+.button-card,
+.comparison-table .table-link,
+.secondary-card-link{
+  cursor:pointer
+}
+.setup-card .secondary-card-link,
+.grinder-card .secondary-card-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
+  min-height:44px;
+  margin-top:8px;
+  padding:10px 13px;
+  border:1px solid #b9a18f;
+  border-radius:8px;
+  background:#fff;
+  color:#49372c;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.25
+}
+.setup-card .secondary-card-link:hover,
+.grinder-card .secondary-card-link:hover{
+  border-color:#76513b;
+  background:#faf6f2;
+  color:#34241a
+}
+.comparison-table .table-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  min-width:108px;
+  min-height:42px;
+  padding:8px 10px;
+  border:1px solid #4e372a;
+  border-radius:8px;
+  background:#563827;
+  color:#fff;
+  text-align:center;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:750;
+  line-height:1.2
+}
+.comparison-table .table-link:hover{
+  background:#37251c;
+  color:#fff
+}
+.comparison-table .table-link small{
+  color:#f3e7dc;
+  font-size:10px
+}
+@media(max-width:700px){
+  .hero-starter-pick{
+    margin-top:12px;
+    padding:12px
+  }
+  .hero-starter-pick>strong{
+    font-size:18px
+  }
+  .hero-starter-links{
+    grid-template-columns:1fr
+  }
+  .hero-affiliate-link{
+    min-height:46px
+  }
+  .hero-photo{
+    height:310px;
+    min-height:310px;
+    border-radius:14px
+  }
+  .hero-photo>img{
+    object-position:65% center
+  }
+  .hero-photo-caption{
+    left:12px;
+    bottom:12px
+  }
+}
