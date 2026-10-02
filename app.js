@@ -190,7 +190,7 @@ function renderRecommendation(item, position, drink) {
     ? `<span class="pair-plus">+</span><div><span class="pair-label">GRINDER</span><strong>${escapeHtml(item.grinder)}</strong><small>${escapeHtml(item.grinderNote)}</small></div>`
     : "";
   const grinderLink = item.grinder
-    ? `<a class="secondary-card-link product-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too <span>(paid link)</span> ↗</a>`
+    ? `<a class="secondary-card-link product-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too ↗</a>`
     : "";
   const recommendationFacts = [
     ["Best for", item.bestFor],
@@ -206,7 +206,7 @@ function renderRecommendation(item, position, drink) {
     <div class="card-verdict"><span class="verdict-icon">↗</span><p><b>${escapeHtml(item.verdictLabel)}</b> ${escapeHtml(item.verdict)}</p></div>
     <dl class="recommendation-facts">${recommendationFacts}</dl>
     <p class="gear-budget"><b>Expected main-gear budget</b><span>${escapeHtml(item.gearBudget)}</span><small>Before tax and accessories; estimate based on manufacturer list prices checked October 2026.</small></p>
-    <a class="button button-card product-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">${escapeHtml(item.machineLinkLabel || `See ${item.machine} on Amazon`)} <span>(paid link)</span> ↗</a>
+    <a class="button button-card product-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">${escapeHtml(item.machineLinkLabel || `See ${item.machine} on Amazon`)} ↗</a>
     ${grinderLink}
   </article>`;
 }
