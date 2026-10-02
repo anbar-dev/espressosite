@@ -28,11 +28,11 @@ The comparison page now starts with quick answers for a ~$500 starter setup, fre
 
 ## 5. Specify the finder behavior — complete
 
-The behavior contract is in [FINDER_SPEC.md](FINDER_SPEC.md). Budget and workflow are hard eligibility filters, drink preference ranks eligible setups, and search combines with filters while recognizing comparison-only products as separate guide links. The spec defines zero-result recovery, header-search defaults, and full versus search-only reset. Step 6 will implement it in JavaScript.
+The behavior contract is in [FINDER_SPEC.md](FINDER_SPEC.md). Budget and workflow are hard eligibility filters, drink preference ranks eligible setups, and search combines with filters while recognizing comparison-only products as separate guide links. The spec defines zero-result recovery, header-search defaults, and full versus search-only reset. Step 6 implements these rules in JavaScript.
 
-## 6. Fix and implement the finder and search — planned
+## 6. Fix and implement the finder and search — complete
 
-Apply the agreed rules in plain JavaScript. Ensure drink preferences change or rank results meaningfully, search covers the products described on the site, and reset clears every filter and query.
+The plain-JavaScript finder now uses flexible budget, mixed drinks, and a neutral workflow on first visit. Budget and workflow are hard filters; drink choice reorders eligible matches and labels the strongest fit. Search normalizes case, accents, apostrophes, dashes, and partial model terms across recommendations, and returns comparison-only Barista Express and Opus 2 links separately from the setup count. Empty states preserve selections and offer the specified clear, relax-workflow, or raise-budget actions. Clear search removes only `q`; Clear all restores every neutral choice and removes `q`.
 
 ## 7. Refine the homepage journey — planned
 

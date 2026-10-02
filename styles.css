@@ -2547,6 +2547,92 @@ body{
   }
 }
 
+/* Finder results: make the leading recommendation and recovery paths clear. */
+.card-topline{
+  gap:8px;
+  justify-content:flex-start;
+  flex-wrap:wrap
+}
+.card-index{
+  margin-left:auto
+}
+.finder-fit-note{
+  color:var(--copper);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.06em
+}
+.empty-results h3{
+  margin:0 0 8px;
+  font:400 20px/1.3 var(--serif)
+}
+.empty-result-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px 20px;
+  margin-top:14px
+}
+.empty-result-actions .text-link{
+  appearance:none;
+  padding:0;
+  border:0;
+  background:transparent;
+  font:700 13px/1.5 var(--sans);
+  color:var(--copper);
+  text-align:left;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  cursor:pointer
+}
+.empty-result-actions .text-link:focus-visible,
+.comparison-suggestions a:focus-visible{
+  outline:2px solid var(--copper);
+  outline-offset:3px
+}
+.comparison-suggestions{
+  grid-column:1/-1;
+  padding:21px 22px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fbfaf6
+}
+.comparison-suggestions h3{
+  margin:0 0 13px;
+  font:400 20px/1.3 var(--serif)
+}
+.comparison-suggestions ul{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:0;
+  padding:0;
+  list-style:none
+}
+.comparison-suggestions a{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  height:100%;
+  padding:13px 14px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#fff;
+  color:var(--ink)
+}
+.comparison-suggestions a:hover{
+  border-color:var(--copper)
+}
+.comparison-suggestions a span{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5
+}
+@media(max-width:600px){
+  .comparison-suggestions ul{
+    grid-template-columns:1fr
+  }
+}
+
 /* Coffee-led palette and clearer editorial scale. */
 :root{
   --ink:#2b211b;

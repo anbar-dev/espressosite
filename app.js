@@ -9,6 +9,7 @@ const recommendations = [
     machine: "Breville Bambino",
     machineNote: "BES450 · fast warm-up · manual steam wand",
     machineQuery: "Breville+Bambino+BES450+espresso+machine",
+    searchTerms: "BrevilleBambino Baratza EncoreESP BES450 BES 450 single boiler compact quick heat portafilter manual milk steaming coffee",
     grinder: "Baratza Encore ESP",
     grinderNote: "Espresso-focused grind adjustment",
     grinderQuery: "Baratza+Encore+ESP+espresso+grinder",
@@ -33,7 +34,8 @@ const recommendations = [
     machine: "Bambino Plus",
     machineNote: "BES500 · automatic or manual milk texturing",
     machineQuery: "Breville+Bambino+Plus+BES500+espresso+machine",
-    grinder: "Encore ESP",
+    searchTerms: "Breville BambinoPlus Baratza EncoreESP BES500 BES 500 automatic manual milk texturing latte cappuccino steam wand portafilter",
+    grinder: "Baratza Encore ESP",
     grinderNote: "Espresso-focused grind adjustment",
     grinderQuery: "Baratza+Encore+ESP+espresso+grinder",
     verdictLabel: "Advantage:",
@@ -57,6 +59,7 @@ const recommendations = [
     machine: "Magnifica Start",
     machineNote: "ECAM22080B EX:1 · built-in grinder and LatteCrema milk",
     machineQuery: "De%27Longhi+Magnifica+Start+ECAM22080B+LatteCrema",
+    searchTerms: "DeLonghi De'Longhi MagnificaStart ECAM22080B EX1 ECAM 22080B LatteCrema super automatic superautomatic bean to cup built in integrated grinder one touch push button milk cappuccino",
     verdictLabel: "Advantage:",
     verdict: "It handles grinding and brewing with one-touch drinks and automatic milk-system cleaning after use.",
     bestFor: "Households that want espresso-based drinks, including milk drinks, with very few preparation steps.",
@@ -78,6 +81,7 @@ const recommendations = [
     machine: "Gaggia Classic Pro E24",
     machineNote: "E24 · brass boiler · manual steam wand",
     machineQuery: "Gaggia+Classic+Pro+E24+espresso+machine",
+    searchTerms: "GaggiaClassicPro Gaggia Classic Pro E24 E 24 Baratza EncoreESP brass boiler 58mm 58 mm portafilter single boiler manual steam wand traditional espresso",
     grinder: "Baratza Encore ESP",
     grinderNote: "Espresso-focused grind adjustment",
     grinderQuery: "Baratza+Encore+ESP+espresso+grinder",
@@ -104,8 +108,58 @@ function escapeHtml(value) {
   })[character]);
 }
 
-function renderRecommendation(item) {
+const comparisonOnly = [
+  {
+    title: "Breville Barista Express",
+    href: "compare.html#machine-barista-express",
+    note: "Semi-automatic with an integrated grinder; shot prep and milk steaming stay manual.",
+    searchTerms: "Breville BaristaExpress BES870XL BES 870 XL built in integrated grinder semi automatic machine manual steam wand"
+  },
+  {
+    title: "Fellow Opus 2",
+    href: "compare.html#grinders",
+    note: "A grinder to compare if you want espresso plus other brew methods.",
+    searchTerms: "FellowOpus2 Fellow Opus 2 grinder espresso multi brew filter coffee conical burr"
+  }
+];
+
+const editorialOrder = {
+  milk: ["bambino-plus-encore", "magnifica-start", "bambino-encore", "gaggia-encore"],
+  espresso: ["bambino-encore", "gaggia-encore", "bambino-plus-encore", "magnifica-start"],
+  both: ["bambino-encore", "bambino-plus-encore", "magnifica-start", "gaggia-encore"]
+};
+
+const drinkLabels = {
+  milk: "milk drinks",
+  espresso: "straight espresso",
+  both: "a mix of drinks"
+};
+
+const stopWords = new Set(["a", "an", "and", "the", "of", "for", "with", "to", "my", "is", "do"]);
+
+function normalizeSearch(value) {
+  return String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’'`´]/g, "")
+    .replace(/[‐‑‒–—-]/g, " ")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function matchesSearch(query, searchableText) {
+  const terms = normalizeSearch(query).split(/\s+/).filter((term) => term && !stopWords.has(term));
+  if (!terms.length) return true;
+  const tokens = normalizeSearch(searchableText).split(/\s+/).filter(Boolean);
+  return terms.every((term) => tokens.some((token) => token.includes(term) || term.includes(token)));
+}
+
+function renderRecommendation(item, position, drink) {
   const isAutomatic = !item.grinder;
+  const fitLabel = position === 0
+    ? `TOP FIT FOR ${drink === "both" ? "A MIX OF DRINKS" : drinkLabels[drink].toUpperCase()}`
+    : "";
   const machineBlock = `<div><span class="pair-label">${isAutomatic ? "ALL-IN-ONE MACHINE" : "MACHINE"}</span><strong>${escapeHtml(item.machine)}</strong><small>${escapeHtml(item.machineNote)}</small></div>`;
   const grinderBlock = item.grinder
     ? `<span class="pair-plus">+</span><div><span class="pair-label">GRINDER</span><strong>${escapeHtml(item.grinder)}</strong><small>${escapeHtml(item.grinderNote)}</small></div>`
@@ -119,8 +173,8 @@ function renderRecommendation(item) {
     ["Trade-off", item.tradeoff],
     ["Skip if", item.skipIf]
   ].map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("");
-  return `<article class="setup-card ${item.id === "bambino-encore" ? "featured-card" : ""}">
-    <div class="card-topline"><span class="pill pill-${item.tone}">${escapeHtml(item.badge)}</span><span class="card-index">${escapeHtml(item.index)}</span></div>
+  return `<article class="setup-card ${position === 0 ? "featured-card" : ""}">
+    <div class="card-topline"><span class="pill pill-${item.tone}">${escapeHtml(item.badge)}</span>${fitLabel ? `<span class="finder-fit-note">${fitLabel}</span>` : ""}<span class="card-index">${String(position + 1).padStart(2, "0")}</span></div>
     <h3>${escapeHtml(item.title)}</h3><p class="card-intro">${escapeHtml(item.intro)}</p>
     <div class="pairing ${isAutomatic ? "single-pair" : ""}">${machineBlock}${grinderBlock}</div>
     <div class="card-verdict"><span class="verdict-icon">↗</span><p><b>${escapeHtml(item.verdictLabel)}</b> ${escapeHtml(item.verdict)}</p></div>
@@ -139,12 +193,8 @@ function setupFinder() {
   const summary = document.querySelector("#results-summary");
   const count = document.querySelector("#results-count");
   const searchInput = document.querySelector("#site-search-input");
+  const searchForm = document.querySelector(".site-search");
   const initialQuery = new URLSearchParams(window.location.search).get("q")?.trim() ?? "";
-  const phrases = {
-    milk: "milk drinks",
-    espresso: "straight espresso",
-    both: "a mix of drinks"
-  };
 
   if (initialQuery && searchInput) {
     searchInput.value = initialQuery;
@@ -153,39 +203,105 @@ function setupFinder() {
     form.elements.workflow.value = "any";
   }
 
+  function updateQueryUrl(query) {
+    const url = new URL(window.location.href);
+    if (query) url.searchParams.set("q", query);
+    else url.searchParams.delete("q");
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  }
+
+  function readFilters() {
+    const formData = new FormData(form);
+    return {
+      budget: formData.get("budget"),
+      drink: formData.get("drink"),
+      workflow: formData.get("workflow"),
+      query: searchInput?.value.trim() ?? ""
+    };
+  }
+
+  function renderComparisonLinks(items) {
+    if (!items.length) return "";
+    return `<section class="comparison-suggestions" aria-label="Comparison guide matches"><h3>In the comparison guide</h3><ul>${items.map((item) => `<li><a href="${item.href}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.note)}</span></a></li>`).join("")}</ul></section>`;
+  }
+
+  function renderEmptyState({ query, conflict }) {
+    if (query) {
+      const filterRecovery = `${conflict.canRelaxWorkflow ? `<button type="button" class="text-link" data-finder-action="relax-workflow">Relax workflow · keep budget</button>` : ""}${conflict.canRaiseBudget ? `<button type="button" class="text-link" data-finder-action="raise-budget">Raise budget · keep workflow</button>` : ""}`;
+      return `<div class="empty-results" role="status"><h3>No featured setup matches “${escapeHtml(query)}” with these filters.</h3><p>Keep the query and loosen an available filter, clear only the search, or reset the whole finder.</p><div class="empty-result-actions">${filterRecovery}<button type="button" class="text-link" data-finder-action="clear-search">Clear search</button><button type="button" class="text-link" data-finder-action="clear-all">Clear all</button></div></div>`;
+    }
+    if (conflict.canRelaxWorkflow && conflict.canRaiseBudget) {
+      return `<div class="empty-results" role="status"><h3>No current pick fits both your budget and workflow.</h3><p>At around $500, the Bambino pair needs manual milk steaming. The easier-milk Bambino Plus pair and one-touch Magnifica Start are in the up-to-$800 band.</p><div class="empty-result-actions"><button type="button" class="text-link" data-finder-action="relax-workflow">Relax workflow · keep budget</button><button type="button" class="text-link" data-finder-action="raise-budget">Raise budget · keep workflow</button><button type="button" class="text-link" data-finder-action="clear-all">Clear all</button></div></div>`;
+    }
+    return `<div class="empty-results" role="status"><h3>No current pick meets every selection.</h3><p>Keep your answers visible and reset the finder to see all four featured setups.</p><div class="empty-result-actions"><button type="button" class="text-link" data-finder-action="clear-all">Clear all</button></div></div>`;
+  }
+
   function showMatches(event) {
     if (event) event.preventDefault();
-    const formData = new FormData(form);
-    const budget = formData.get("budget");
-    const drink = formData.get("drink");
-    const workflow = formData.get("workflow");
-    const query = searchInput?.value.trim().toLowerCase() ?? "";
+    const { budget, drink, workflow, query } = readFilters();
+    updateQueryUrl(query);
+
+    const eligibleForBudget = (item) => budget === "any" || item.budget <= Number(budget);
+    const eligibleForWorkflow = (item) => workflow === "any" || item.workflow.includes(workflow);
     const matches = recommendations.filter((item) => {
       const fitsBudget = budget === "any" || item.budget <= Number(budget);
       const fitsDrink = item.drinks.includes(drink);
       const fitsWorkflow = workflow === "any" || item.workflow.includes(workflow);
-      const searchText = [item.title, item.intro, item.machine, item.machineNote, item.grinder, item.grinderNote, item.badge].filter(Boolean).join(" ").toLowerCase();
-      const fitsQuery = !query || searchText.includes(query);
+      const searchText = [item.title, item.intro, item.machine, item.machineNote, item.grinder, item.grinderNote, item.badge, item.bestFor, item.dailyRoutine, item.tradeoff, item.skipIf, item.gearBudget, item.searchTerms].filter(Boolean).join(" ");
+      const fitsQuery = !query || matchesSearch(query, searchText);
       return fitsBudget && fitsDrink && fitsWorkflow && fitsQuery;
     });
 
-    summary.textContent = matches.length
-      ? query
-        ? `Search results for “${searchInput.value.trim()}”`
-        : `Shortlist for ${phrases[drink]}${budget === "any" ? "" : ` · around $${Number(budget).toLocaleString("en-US")} max`}`
-      : "No exact match for every filter — try widening your budget or workflow.";
+    const rank = editorialOrder[drink] ?? editorialOrder.both;
+    matches.sort((first, second) => rank.indexOf(first.id) - rank.indexOf(second.id));
+
+    const comparisonMatches = query
+      ? comparisonOnly.filter((item) => matchesSearch(query, `${item.title} ${item.note} ${item.searchTerms}`))
+      : [];
+    const searchableText = (item) => [item.title, item.intro, item.machine, item.machineNote, item.grinder, item.grinderNote, item.badge, item.bestFor, item.dailyRoutine, item.tradeoff, item.skipIf, item.gearBudget, item.searchTerms].filter(Boolean).join(" ");
+    const queryMatchesItem = (item) => !query || matchesSearch(query, searchableText(item));
+    const canRelaxWorkflow = matches.length === 0 && recommendations.some((item) => item.drinks.includes(drink) && eligibleForBudget(item) && queryMatchesItem(item));
+    const canRaiseBudget = matches.length === 0 && recommendations.some((item) => item.drinks.includes(drink) && eligibleForWorkflow(item) && item.budget <= 800 && queryMatchesItem(item));
+    const budgetWorkflowConflict = { canRelaxWorkflow, canRaiseBudget };
+
+    summary.textContent = query
+      ? `Search results for “${query}”`
+      : `Shortlist for ${drinkLabels[drink]}${budget === "any" ? "" : ` · $${Number(budget).toLocaleString("en-US")} max`}`;
     count.textContent = `${matches.length} ${matches.length === 1 ? "setup" : "setups"}`;
-    grid.innerHTML = matches.length
-      ? matches.map(renderRecommendation).join("")
-      : `<div class="empty-results"><p>We don’t have a pick that fits all three answers yet.</p><button type="button" class="text-link" data-reset-finder>Show all matches ↗</button></div>`;
+    const cards = matches.map((item, position) => renderRecommendation(item, position, drink)).join("");
+    const emptyState = matches.length ? "" : renderEmptyState({ query, conflict: budgetWorkflowConflict });
+    grid.innerHTML = `${cards}${emptyState}${renderComparisonLinks(comparisonMatches)}`;
   }
 
   form.addEventListener("submit", showMatches);
+  searchForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    form.elements.budget.value = "any";
+    form.elements.drink.value = "both";
+    form.elements.workflow.value = "any";
+    showMatches();
+    document.querySelector("#finder")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   grid.addEventListener("click", (event) => {
-    if (event.target.closest("[data-reset-finder]")) {
+    const action = event.target.closest("[data-finder-action]")?.dataset.finderAction;
+    if (action === "clear-search") {
+      if (searchInput) searchInput.value = "";
+      showMatches();
+    } else if (action === "clear-all") {
       form.elements.budget.value = "any";
+      form.elements.drink.value = "both";
+      form.elements.workflow.value = "any";
+      if (searchInput) searchInput.value = "";
+      showMatches();
+    } else if (action === "relax-workflow") {
       form.elements.workflow.value = "any";
       showMatches();
+    } else if (action === "raise-budget") {
+      form.elements.budget.value = "800";
+      showMatches();
+    }
+    if (action) {
+      document.querySelector("#finder")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   });
   showMatches();

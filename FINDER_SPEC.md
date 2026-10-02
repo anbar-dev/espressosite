@@ -55,4 +55,4 @@ After other filters remove setups, preserve this relative order among the remain
 
 ## Implementation boundary
 
-This is the behavior contract for roadmap step 6. It does not change the existing JavaScript, product shortlist, or page controls; implement and review those in the next step.
+This behavior contract was implemented in roadmap step 6. Keep it as the reference when changing the homepage finder or search behavior.
