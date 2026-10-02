@@ -53,3 +53,5 @@ Product photos are local files in `assets/`, captured from these Amazon product 
 | Breville Barista Express BES870XL | `B00CH9QWOU` | `assets/breville-barista-express.jpg` |
 
 Amazon links use these product detail pages with the `cofmac93-20` tag. Verify the selected variant, seller, and availability in the Associates account when refreshing a product image or link.
+
+Amazon anchors use the generic `product-link` class for styling, while affiliate status stays explicit through `rel="sponsored"` and visible “paid link” wording. Avoid adding an `affiliate-link` CSS class: cosmetic content filters may hide elements marked with that class.

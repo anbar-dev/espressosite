@@ -3759,7 +3759,7 @@ body{
   grid-template-columns:1fr 1fr;
   gap:8px
 }
-.hero-affiliate-link,
+.hero-product-link,
 .setup-card .button-card,
 .grinder-card .button-card,
 .auto-product-copy .button-card{
@@ -3779,7 +3779,7 @@ body{
   font-weight:750;
   line-height:1.25
 }
-.hero-affiliate-link:hover,
+.hero-product-link:hover,
 .setup-card .button-card:hover,
 .grinder-card .button-card:hover,
 .auto-product-copy .button-card:hover{
@@ -3787,7 +3787,7 @@ body{
   color:#fff;
   transform:translateY(-1px)
 }
-.hero-affiliate-link:focus-visible,
+.hero-product-link:focus-visible,
 .setup-card .button-card:focus-visible,
 .grinder-card .button-card:focus-visible,
 .auto-product-copy .button-card:focus-visible,
@@ -3796,7 +3796,7 @@ body{
   outline:3px solid #b16a43;
   outline-offset:3px
 }
-.hero-affiliate-link>span,
+.hero-product-link>span,
 .setup-card .button-card>span,
 .grinder-card .button-card>span,
 .auto-product-copy .button-card>span{
@@ -3941,7 +3941,7 @@ body{
   .hero-starter-links{
     grid-template-columns:1fr
   }
-  .hero-affiliate-link{
+  .hero-product-link{
     min-height:46px
   }
   .hero-photo{
@@ -3964,30 +3964,30 @@ body{
   --action-teal-hover:#055d64
 }
 .starter-strip-links .button,
-.setup-card .button-card.affiliate-link,
-.grinder-card .button-card.affiliate-link,
-.auto-product-copy .button-card.affiliate-link,
-.comparison-table .table-link.affiliate-link{
+.setup-card .button-card.product-link,
+.grinder-card .button-card.product-link,
+.auto-product-copy .button-card.product-link,
+.comparison-table .table-link.product-link{
   border-color:var(--action-teal);
   background:var(--action-teal);
   color:#fff
 }
 .starter-strip-links .button:hover,
-.setup-card .button-card.affiliate-link:hover,
-.grinder-card .button-card.affiliate-link:hover,
-.auto-product-copy .button-card.affiliate-link:hover,
-.comparison-table .table-link.affiliate-link:hover{
+.setup-card .button-card.product-link:hover,
+.grinder-card .button-card.product-link:hover,
+.auto-product-copy .button-card.product-link:hover,
+.comparison-table .table-link.product-link:hover{
   border-color:var(--action-teal-hover);
   background:var(--action-teal-hover);
   color:#fff
 }
-.setup-card .secondary-card-link.affiliate-link,
-.grinder-card .secondary-card-link.affiliate-link{
+.setup-card .secondary-card-link.product-link,
+.grinder-card .secondary-card-link.product-link{
   border-color:#65a7a8;
   color:#075f66
 }
-.setup-card .secondary-card-link.affiliate-link:hover,
-.grinder-card .secondary-card-link.affiliate-link:hover{
+.setup-card .secondary-card-link.product-link:hover,
+.grinder-card .secondary-card-link.product-link:hover{
   border-color:var(--action-teal);
   background:#edf8f7;
   color:#044c52

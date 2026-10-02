@@ -179,8 +179,8 @@ function renderRecommendation(item, position, drink) {
   const machineUrl = affiliateProductUrl(item.machineAsin, item.machineQuery);
   const grinderUrl = affiliateProductUrl(item.grinderAsin, item.grinderQuery);
   const productImages = `<div class="setup-product-gallery${isAutomatic ? " single-product-gallery" : ""}">
-    <figure class="product-photo-card"><img src="${escapeHtml(item.machineImage)}" alt="${escapeHtml(item.machine)} espresso machine" loading="lazy" decoding="async"><figcaption><a class="product-photo-cta affiliate-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">Machine · Amazon paid link ↗</a></figcaption></figure>
-    ${item.grinder ? `<figure class="product-photo-card"><img src="${escapeHtml(item.grinderImage)}" alt="${escapeHtml(item.grinder)} coffee grinder" loading="lazy" decoding="async"><figcaption><a class="product-photo-cta affiliate-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">Grinder · Amazon paid link ↗</a></figcaption></figure>` : ""}
+    <figure class="product-photo-card"><img src="${escapeHtml(item.machineImage)}" alt="${escapeHtml(item.machine)} espresso machine" loading="lazy" decoding="async"><figcaption><a class="product-photo-cta product-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">Machine · Amazon paid link ↗</a></figcaption></figure>
+    ${item.grinder ? `<figure class="product-photo-card"><img src="${escapeHtml(item.grinderImage)}" alt="${escapeHtml(item.grinder)} coffee grinder" loading="lazy" decoding="async"><figcaption><a class="product-photo-cta product-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">Grinder · Amazon paid link ↗</a></figcaption></figure>` : ""}
   </div>`;
   const fitLabel = position === 0
     ? `TOP FIT FOR ${drink === "both" ? "A MIX OF DRINKS" : drinkLabels[drink].toUpperCase()}`
@@ -190,7 +190,7 @@ function renderRecommendation(item, position, drink) {
     ? `<span class="pair-plus">+</span><div><span class="pair-label">GRINDER</span><strong>${escapeHtml(item.grinder)}</strong><small>${escapeHtml(item.grinderNote)}</small></div>`
     : "";
   const grinderLink = item.grinder
-    ? `<a class="secondary-card-link affiliate-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too <span>(paid link)</span> ↗</a>`
+    ? `<a class="secondary-card-link product-link" href="${grinderUrl}" target="_blank" rel="sponsored nofollow noopener">See the ${escapeHtml(item.grinder)} too <span>(paid link)</span> ↗</a>`
     : "";
   const recommendationFacts = [
     ["Best for", item.bestFor],
@@ -201,12 +201,12 @@ function renderRecommendation(item, position, drink) {
   return `<article class="setup-card ${position === 0 ? "featured-card" : ""}">
     <div class="card-topline"><span class="pill pill-${item.tone}">${escapeHtml(item.badge)}</span>${fitLabel ? `<span class="finder-fit-note">${fitLabel}</span>` : ""}<span class="card-index">${String(position + 1).padStart(2, "0")}</span></div>
     ${productImages}
-    <h3>${escapeHtml(item.title)}</h3><p class="product-title-note"><a class="product-title-link affiliate-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">Machine listing · paid link on Amazon ↗</a></p><p class="card-intro">${escapeHtml(item.intro)}</p>
+    <h3>${escapeHtml(item.title)}</h3><p class="product-title-note"><a class="product-title-link product-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">Machine listing · paid link on Amazon ↗</a></p><p class="card-intro">${escapeHtml(item.intro)}</p>
     <div class="pairing ${isAutomatic ? "single-pair" : ""}">${machineBlock}${grinderBlock}</div>
     <div class="card-verdict"><span class="verdict-icon">↗</span><p><b>${escapeHtml(item.verdictLabel)}</b> ${escapeHtml(item.verdict)}</p></div>
     <dl class="recommendation-facts">${recommendationFacts}</dl>
     <p class="gear-budget"><b>Expected main-gear budget</b><span>${escapeHtml(item.gearBudget)}</span><small>Before tax and accessories; estimate based on manufacturer list prices checked October 2026.</small></p>
-    <a class="button button-card affiliate-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">${escapeHtml(item.machineLinkLabel || `See ${item.machine} on Amazon`)} <span>(paid link)</span> ↗</a>
+    <a class="button button-card product-link" href="${machineUrl}" target="_blank" rel="sponsored nofollow noopener">${escapeHtml(item.machineLinkLabel || `See ${item.machine} on Amazon`)} <span>(paid link)</span> ↗</a>
     ${grinderLink}
   </article>`;
 }
